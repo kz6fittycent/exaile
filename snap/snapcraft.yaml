@@ -9,7 +9,7 @@ confinement: strict # use 'strict' once you have the right plugs
 apps:
   exaile:
     command: exaile
-    desktop: usr/share/applications/exaile.desktop
+    desktop: $SNAP/usr/share/applications/exaile.desktop
     # environment: 
       # LC_ALL: C.UTF-8
     plugs:
