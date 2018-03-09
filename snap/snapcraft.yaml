@@ -1,0 +1,48 @@
+name: exaile # check to see if it's available
+version: '0.1+git' # check versioning
+summary: Exaile is a music player with a simple interface and powerful music management capabilities. # 79 char long summary
+description: |
+    Exaile is a music player with a simple interface and powerful music management capabilities. Features include automatic fetching of album art, lyrics fetching, streaming internet radio, tabbed playlists, smart playlists with extensive filtering/search capabilities, and much more. Exaile is written using Python and GTK+ and is easily extensible via plugins. There are over 50 plugins distributed with Exaile that include advanced track tagging, last.fm scrobbling, support for portable media players, podcasts, internet radio such as icecast and Soma.FM, ReplayGain, output via a secondary output device (great for DJs!), and much more.
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs
+
+apps:
+  exaile:
+    command: exaile
+    desktop: usr/share/applications/exaile.desktop
+    # environment: 
+      # LC_ALL: C.UTF-8
+    plugs:
+      - home
+      - network
+      - network-bind
+      - alsa
+      - pulseaudio
+     
+parts: 
+  my-part:
+    source: https://github.com/kz6fittycent/exaile
+    source-type: git
+    plugin: python3
+    after: [desktop-gtk2]
+    
+    build-packages:
+      - python3
+      - librsvg2-common
+      - python-dbus
+      - python-gobject
+      - python-gst0.10
+      - python-gtk2 
+      
+    stage-packages:
+      - python3
+      - gstreamer0.10-plugins-good
+      - librsvg2-common
+      - python-dbus
+      - python-gobject
+      - python-gst0.10
+      - python-gtk2 
+      - python-mutagen
+      - python-cddb
+      - python-mmkeys
+      - python-notify
